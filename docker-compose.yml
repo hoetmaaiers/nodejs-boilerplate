@@ -1,0 +1,15 @@
+version: '2'
+services:
+  postgres:
+    image: sameersbn/postgresql
+    container_name: pgsql_template
+    ports:
+    - "5432:5432"
+    environment:
+      - PG_PASSWORD=developer
+      - DB_USER=developer
+      - DB_PASS=developer
+      - DB_NAME=db_test,db_dev
+      - DB_EXTENSION=btree_gist
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data

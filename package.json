@@ -1,0 +1,57 @@
+{
+  "name": "nodejs-boilerplate",
+  "version": "1.0.0",
+  "engines": {
+    "node": "^8.9"
+  },
+  "description": "Node.js boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:development": "nodemon index.js",
+    "test": "yarn lint && yarn test:unit && yarn test:integration",
+    "test:unit": "jest --maxWorkers=1 --forceExit test/unit",
+    "test:integration": "jest --maxWorkers=1 --forceExit test/integration",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "node",
+    "api"
+  ],
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cors": "~2.8.4",
+    "date-fns": "~1.29.0",
+    "dotenv": "~4.0.0",
+    "express": "~4.16.2",
+    "express-validation": "~1.0.2",
+    "express-winston": "~2.4.0",
+    "global": "~4.3.2",
+    "http-status": "~1.0.1",
+    "joi": "~12.0.0",
+    "js-yaml": "~3.10.0",
+    "jsonade": "~1.0.4",
+    "knex": "~0.14.0",
+    "lodash": "~4.17.4",
+    "pg": "~7.4.0",
+    "swagger-ui-express": "~2.0.10",
+    "uuid": "~3.1.0",
+    "winston": "~2.4.0"
+  },
+  "devDependencies": {
+    "eslint": "~4.10.0",
+    "eslint-config-airbnb": "~16.1.0",
+    "eslint-plugin-import": "~2.8.0",
+    "eslint-plugin-jsx-a11y": "~6.0.2",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "~7.4.0",
+    "jest": "~21.2.1",
+    "nodemon": "~1.12.1",
+    "supertest": "~3.0.0"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/test/setup"
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "plugins": [
+    "promise"
+  ],
+  "extends": [
+    "airbnb",
+    "plugin:promise/recommended"
+  ],
+  "globals": {
+    "describe": true,
+    "it": true,
+    "beforeEach": true,
+    "beforeAll": true,
+    "afterEach": true,
+    "afterAll": true,
+    "expect": true,
+    "spyOn": true,
+    "jest": true
+  }
+}

@@ -1,0 +1,27 @@
+image: node:8
+
+clone:
+  depth: full
+
+pipelines:
+  default:
+    - step:
+        caches:
+            - yarn
+        script:
+            - yarn
+            - yarn test
+        services:
+            - postgres
+definitions:
+    services:
+        postgres:
+            image: sameersbn/postgresql
+            environment:
+                PG_PASSWORD: 'developer'
+                DB_USER: 'developer'
+                DB_PASS: 'developer'
+                DB_NAME: 'db_test,db_dev'
+                DB_EXTENSION: 'btree_gist'
+    caches:
+        yarn: node_modules

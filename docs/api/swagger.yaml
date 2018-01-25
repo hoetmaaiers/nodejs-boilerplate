@@ -1,0 +1,38 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Qwistet"
+host: "localhost:3000"
+basePath: "/api"
+schemes:
+  - "http"
+  - "https"
+paths:
+  /status:
+    get:
+      tags:
+        - "MetaInfo"
+      summary: "Status check"
+      responses:
+        204:
+          description: "Successfull status check"
+        404:
+          description: "Unsuccessfull status check"
+  /version:
+    get:
+      tags:
+        - "MetaInfo"
+      summary: "Version retrieval"
+      produces:
+        - "text/plain"
+      responses:
+        200:
+          description: "The current version was successfully retrieved"
+          schema:
+            $ref: "#/definitions/VersionResponse"
+
+definitions:
+  VersionResponse:
+    type: string
+    description: The version number
+    example: 0.0.1
