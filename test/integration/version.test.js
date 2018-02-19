@@ -8,12 +8,16 @@ const app = require('./../../app');
 const { startWithCleanDatabase } = require('./../helpers');
 
 describe('Version routes', () => {
-  beforeEach(async (done) => {
+  beforeEach(async () => {
     await startWithCleanDatabase();
-    return done();
   });
 
   describe('GET /version', () => {
+    it('Should return a formatted validation error object', async () => {
+      await request(app)
+        .get('/api/version')
+        .expect(200);
+    });
     it('Should return a formatted validation error object', async () => {
       await request(app)
         .get('/api/version')
