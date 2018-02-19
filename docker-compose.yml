@@ -12,4 +12,4 @@ services:
       - DB_NAME=db_test,db_dev
       - DB_EXTENSION=btree_gist
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - ./data/postgres:/var/lib/postgresql
