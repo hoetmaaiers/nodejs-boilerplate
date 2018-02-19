@@ -9,9 +9,9 @@
   "scripts": {
     "start": "node index.js",
     "start:development": "nodemon index.js",
-    "test": "yarn lint && yarn test:unit && yarn test:integration",
-    "test:unit": "jest --maxWorkers=1 --forceExit test/unit",
-    "test:integration": "jest --maxWorkers=1 --forceExit test/integration",
+    "test": "yarn lint && yarn test:integration --exit && yarn test:unit",
+    "test:unit": "mocha test/unit",
+    "test:integration": "mocha test/integration",
     "lint": "eslint ."
   },
   "keywords": [
@@ -33,6 +33,7 @@
     "jsonade": "~1.0.4",
     "knex": "~0.14.0",
     "lodash": "~4.17.4",
+    "mocha": "^5.0.1",
     "pg": "~7.4.0",
     "swagger-ui-express": "~2.0.10",
     "uuid": "~3.1.0",
@@ -45,7 +46,6 @@
     "eslint-plugin-jsx-a11y": "~6.0.2",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "~7.4.0",
-    "jest": "~21.2.1",
     "nodemon": "~1.12.1",
     "supertest": "~3.0.0"
   },
