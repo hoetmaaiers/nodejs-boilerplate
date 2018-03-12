@@ -2,7 +2,6 @@ version: '2'
 services:
   postgres:
     image: sameersbn/postgresql
-    container_name: pgsql_template
     ports:
     - "5432:5432"
     environment:
