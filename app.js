@@ -8,7 +8,7 @@ const { isArray } = require('lodash');
 const loggerMiddleware = require('./server/middlewares/logger.middleware');
 const { getSwaggerDocument } = require('./server/helpers/swagger.helper');
 const Errors = require('./server/errors');
-const { ErrorSerializer } = require('jsonade');
+const errorhandler = require('./server/middlewares/error.middleware');
 
 const app = express();
 app.use(cors());
@@ -33,45 +33,11 @@ app.use((req, res, next) =>
   })));
 
 // handle Joi error
-app.use((err, req, res, next) => {
-  if (err.message === 'validation error') {
-    const errors = err.errors.map(e => Errors.unprocessableEntity({
-      title: e.field,
-      url: req.originalUrl,
-      detail: e.messages[0],
-      meta: {
-        stack: e,
-      },
-    }));
+app.use(errorhandler);
 
-    throw errors;
-  }
-
-  return next((isArray(err) && err) || [err]);
-});
-
-// eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-  const errRequestExtended = err.map((e) => {
-    if (e.status) {
-      return {
-        ...e,
-        url: req.originalUrl,
-      };
-    }
-
-    // All non intentional errors will be internal server error
-    // AKA the scary 500 monster 🎃
-    return Errors.internalServerError({
-      title: 'Something went wrong 😢',
-      url: req.originalUrl,
-      detail: e.message,
-      meta: { stack: e.stack },
-    });
-  });
-
-  const serializedError = ErrorSerializer.serialize(errRequestExtended);
-  return res.status(errRequestExtended[0].status).send(serializedError);
+process.on('unhandledRejection', (e) => {
+  // Show stack of unhandeld errors
+  console.error('unhandledRejection', e.message);
 });
 
 module.exports = app;
