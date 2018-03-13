@@ -8,7 +8,7 @@ const { isArray } = require('lodash');
 const loggerMiddleware = require('./server/middlewares/logger.middleware');
 const { getSwaggerDocument } = require('./server/helpers/swagger.helper');
 const Errors = require('./server/errors');
-const Errorhandler = require('./server/middlewares/error.middleware');
+const errorhandler = require('./server/middlewares/error.middleware');
 
 const app = express();
 app.use(cors());
@@ -33,7 +33,7 @@ app.use((req, res, next) =>
   })));
 
 // handle Joi error
-app.use(Errorhandler);
+app.use(errorhandler);
 
 process.on('unhandledRejection', (e) => {
   // Show stack of unhandeld errors

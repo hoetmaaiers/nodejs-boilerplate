@@ -4,16 +4,16 @@
  *
  */
 const { ErrorSerializer } = require('jsonade');
-const Errors = require('../errors');
+const errors = require('../errors');
 const { isArray } = require('lodash');
 
 // eslint-disable-next-line no-unused-vars
-function errorHandeler(err, req, res, next) {
+function errorHandler(err, req, res, next) {
   let errArray = isArray(err) ? err : [err];
 
   // Validation Error
   if (err.message === 'validation error') {
-    errArray = err.errors.map(e => Errors.unprocessableEntity({
+    errArray = err.errors.map(e => errors.unprocessableEntity({
       title: e.field,
       url: req.originalUrl,
       detail: e.messages[0],
@@ -30,7 +30,7 @@ function errorHandeler(err, req, res, next) {
       };
     }
 
-    return Errors.internalServerError({
+    return errors.internalServerError({
       title: 'Something went wrong 😢',
       url: req.originalUrl,
       detail: error.message,
@@ -40,4 +40,4 @@ function errorHandeler(err, req, res, next) {
   const serializedError = ErrorSerializer.serialize(errRequestExtended);
   return res.status(errRequestExtended[0].status).send(serializedError);
 }
-module.exports = errorHandeler;
+module.exports = errorHandler;
