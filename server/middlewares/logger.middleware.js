@@ -10,7 +10,7 @@ const expressWinston = require('express-winston');
 const logLevel = process.env.LOG_LEVEL || 'info';
 const requestBlackList = ['password'];
 
-module.exports = () => expressWinston.logger({
+module.exports = expressWinston.logger({
   transports: [
     new (winston.transports.Console)({
       timestamp: true,
