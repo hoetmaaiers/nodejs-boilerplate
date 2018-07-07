@@ -9,6 +9,7 @@ const { pick } = require('lodash');
 
 const form = errorDefault => customException =>
   Object.assign(
+    {},
     errorDefault,
     { id: uuid() },
     pick(customException, ['id', 'code', 'url', 'meta', 'title', 'detail']),
