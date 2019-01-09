@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:10.15.0-alpine
 MAINTAINER iCapps <developer@icapps.com>
 
 RUN echo Let\'s get going with Docker

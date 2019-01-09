@@ -8,7 +8,7 @@ router.get('/version', (req, res) => {
   return res.status(200).send(version);
 });
 
-router.get('/status', (req, res) => res.status(204).send('OK'));
+router.get('/status', (req, res) => res.status(204).send());
 
 router.use('/dummies', require('./dummy.routes'));
 // ...
