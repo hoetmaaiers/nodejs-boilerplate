@@ -4,7 +4,6 @@ const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { isArray } = require('lodash');
 const loggerMiddleware = require('./server/middlewares/logger.middleware');
 const { getSwaggerDocument } = require('./server/helpers/swagger.helper');
 const Errors = require('./server/errors');
@@ -29,7 +28,6 @@ app.use((req, res, next) =>
   next(Errors.notFound({
     title: 'Shits gone yo 😢',
     code: '9999',
-    url: req.originalUrl,
   })));
 
 // handle Joi error
@@ -37,6 +35,7 @@ app.use(errorhandler);
 
 process.on('unhandledRejection', (e) => {
   // Show stack of unhandeld errors
+  // eslint-igone-next-line
   console.error('unhandledRejection', e.message);
 });
 
